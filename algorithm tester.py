@@ -18,11 +18,15 @@ min = min(data_set)
 range_of_set = max - min
 sorted_set = []
 
+print(min)
+print(max)
+
 #begins the sort
-for i in range(min, max+1):
+for i in range(len(data_set)):
+
+    element = i + min
 
     if i + min in data_set:
-        element = i + min
         sorted_set.append(element)
 
 print(sorted_set)
