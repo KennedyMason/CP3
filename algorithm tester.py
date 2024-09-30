@@ -1,16 +1,42 @@
-#create data set
-data_set = input("Enter a list of digits: ")
-data_set = data_set.replace(",","")
-data_set = data_set.split()
+import random
+import time
 
-for item in range(0, len(data_set)):
-    data_set[item] = int(data_set[item])
+
+#create data set
+
+set_type = input("Would you like to:\n\
+    a) Create your own data set.\n\
+    b) Use a randomly generated set\n\n")
+
+if set_type.lower() == "a":
+    data_set = input("Enter a list of digits: ")
+    data_set = data_set.replace(",","")
+    data_set = data_set.split()
+
+    for item in range(0, len(data_set)):
+        data_set[item] = int(data_set[item])
+
+elif set_type.lower() == "b":
+    r = random.randint(4,10)
+    data_set = []
+
+    for i in range(r):
+        element = random.randint(1,9)
+        data_set.append(element)
+    
+    print("\nYour data set is", data_set )
+
+sort_type = input("\nWhat sort would you like to use?:\n\
+    a) Pigeonhole\n\
+    b) Seletion\n\n")
+
 
 
 
 #pigeonhole sort
 def pigeonhole_sort(a):
-
+    
+    start = time.time()
     #finds the maximum, minimum, and range
     my_max = max(a)
     my_min = min(a)
@@ -29,24 +55,50 @@ def pigeonhole_sort(a):
             holes[count] -= 1
             a[i] = count + my_min
             i += 1
-    print(a)
+    
+    end = time.time()
+    total_time = round((end-start),3)
+    print("\nYour sorted set is", a)
+    print("It took", str(total_time), "seconds to run.")
+
 
 
 
 #selection sort
 def selection_sort(a):
 
-    for i in a:
+    sorted_array = []
+
+    my_max = max(a)
+    my_min = min(a)
+    range_of_set = (my_max - my_min)+1
+
+    for i in range(range_of_set-1):
+        a[0] - my_min
+        if a[0] - my_min > 0:
+            sorted_array.append(my_min)
+            a.remove(my_min)
+            my_min = min(a)
+
+        else:
+            sorted_array.append(a[0])
+            a.remove(a[0])
+            my_min = min(a)
+
+    sorted_array.append(my_max)
+
+    print(sorted_array)
+
         
-        if a[i] > a[-i]:
-
-            a[i] = a[-i]
-            a[-i] = a[i]
-
-    print(a)
 
 
-selection_sort(data_set)
+
+if sort_type.lower() == "a":
+    pigeonhole_sort(data_set)
+
+elif sort_type.lower() == "b":
+    selection_sort(data_set)
+
 
 
     
