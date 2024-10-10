@@ -77,20 +77,26 @@ class Movie:
         return alpha_list
         
     def chronologize(self):
-        
+
         year_list = []
-        
+        chrono_list = []
+
         for item in Movie.listed:
-            
-            year_list.append(item.date)
-            
-            year_list.sort()
-            
-            if len(year_list) == len(Movie.listed)
-            
-                for year in year_list:
-                    
-                    if item.date 
+            year_list.append(item.release_year)
+
+        year_list.sort()
+
+        for year in year_list:
+
+            for item in Movie.listed:
+    
+                if item.release_year == year:
+                    chrono_list.append(item.title)
+
+        return chrono_list
+        
+        
+        
                 
                 
        
@@ -157,6 +163,8 @@ clear()
        
 while searching == True:
     
+    clear()
+
     action = input("Would you like to: \n\
 a. Print movie information\n\
 b. Search genre\n\
@@ -204,9 +212,21 @@ f. See movies in chronological order\n\n")
     elif action == "e":
         
         print()
-        print("Here is the list of movies in alphabetical order:")
+        print("Here is the list of movies in alphabetical order:\n")
         print()
         print(Movie.alphabetize(Movie))
         
     elif action == "f":
+
+        print("\nHere is the list of movies listed by order of release, from earliest to latest:\n")
         print(Movie.chronologize(Movie))
+
+    action_2 = input("\nWould you like to continue searching? (y/n): ")
+
+    if action_2 == "y":
+        clear()
+
+    elif action_2 == "n":
+        clear()
+        print("Have a great day!")
+        searching = False
