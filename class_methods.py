@@ -1,5 +1,5 @@
 
-class pokemon:
+class Pokemon:
 
     def __init__ (self, name, hp, typ, level):
         self.name = name
@@ -38,7 +38,7 @@ HP: {self.hp}
     @classmethod
 
     def pikachu(self):
-        return pokemon(input("Give me a name: "), 50, "Electric", 1)
+        return Pokemon(input("Give me a name: "), 50, "Electric", 1)
 
 
     #Static methods do not require self or cls
@@ -51,11 +51,11 @@ HP: {self.hp}
 
 
 
-eevee = pokemon("JayRod", 37, "Normal", 2)
-charzard = pokemon("Bob", 1, "Fire", 36)
+eevee = Pokemon("JayRod", 37, "Normal", 2)
+charzard = Pokemon("Bob", 1, "Fire", 36)
 
-pika = pokemon.pikachu()
+pika = Pokemon.pikachu()
 print(pika)
 
-pika.hp = pokemon.hp_update(pika)
+pika.hp = Pokemon.hp_update(pika)
 print(pika)
