@@ -17,7 +17,7 @@ class Candy(DessertItem):
         super().__init__(name)
         self.candy_weight = candy_weight
         self.price_per_pound = price_per_pound
-    
+
 
 
 # cookie class
@@ -44,9 +44,7 @@ class IceCream(DessertItem):
 class Sundae(IceCream):
 
     def __init__(self, name, scoop_count, price_per_scoop, topping_name, topping_price):
-        super().__init__(name)
-        self.scoop_count = scoop_count
-        self.price_per_scoop = price_per_scoop
+        super().__init__(name, scoop_count, price_per_scoop)
         self.topping_name = topping_name
         self.topping_price = topping_price
 
