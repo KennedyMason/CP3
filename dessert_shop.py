@@ -63,29 +63,28 @@ class Order:
 
     def __str__(self):
         for item in self.order:
-            return f"{item}"
+            print(f"{item}")
         
     def add(self, item):
-        self.order.append(item)
-    
+        self.order.append(item.name)
+      
     def total_items(self):
         total = len(self.order)
-        return f"{total}"
-
+        return total
 
 
 def main():
 
     order = Order([])
+    
+    order.add(Candy("Candy Corn", 1.5, .25))
+    order.add(Candy("Gummy Bears", .25, .35))
+    order.add(Cookie("Chocolate Chip", 6, 3.99))
+    order.add(IceCream("Pistachio", 2, .79))
+    order.add(Sundae("Vanilla", 3, .69, "Hot Fudge", 1.29))
+    order.add(Cookie("Oatmeal Raisin", 2, 3.45))
 
-    order.add(Candy("Gummy Bears", 5, 2.00))
-    order.add(Cookie("Chocolate Chip", 12, 18.00))
-    order.add(IceCream("Vanilla", 2, 0.50))
-    order.add(Sundae("Chocolate", 3, 1.00, "Syrup", 1.00))
-
-    item_amount = order.total_items
-
-    print(order)
-    print(f"Total number of items: {item_amount}")
-
+    print(order.__str__())
+    print(f'Total number of items in order: {order.total_items()}')
+ 
 main()
