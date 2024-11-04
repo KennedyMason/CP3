@@ -82,16 +82,14 @@ class Battle:
     
 
 
-def pick_monster():
+zombie = Zombie("Priscilla")
+headhorse = HeadlessHorseman("Bob")
+spider = Spider("Genevieve")
+urmom = UrMom("Barbara")
 
-    monster_choice = input("Pick a monster: \n\
-a. Zombie\n\
-b. Headless Horseman\n\
-c. Spider\n\
-d. Your Mom\n")
-    
-    if monster_choice.lower() == "a":
-
-        name = input("What's it's name?: ")
+fight1 = Battle(zombie, headhorse)
+fight2 = Battle(spider, urmom)
         
+fight1.fight()
+fight2.fight()
 
