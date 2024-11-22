@@ -8,7 +8,7 @@ class DessertItem(ABC):
         self.tax_percent = tax_percent
 
     def __str__(self):
-        return f"The dessert is {self.name}."
+        return f"{self.name}"
     
     def calculate_tax(self, cost):
         return cost * self.tax_percent
@@ -62,5 +62,8 @@ class Sundae(IceCream):
         super().__init__(name, scoop_count, price_per_scoop)
         self.topping_name = topping_name
         self.topping_price = topping_price
+
+    def calculate_cost(self):
+        return (self.scoop_count * self.price_per_scoop) + self.topping_price
 
 

@@ -8,14 +8,31 @@ class Order:
 
     def __str__(self):
         for item in self.order:
-            print(f"{item}")
+            print(f"{item.name}")
         
     def add(self, item):
-        self.order.append(item.name)
+        self.order.append(item)
       
     def total_items(self):
         total = len(self.order)
         return total
+    
+    def order_total(self):
+        total = 0
+
+        for item in self.order:
+                total += item.calculate_cost()
+
+        return round(total, 2)
+    
+    def order_tax(self):
+        tax = 0
+        for item in self.order:
+            item_tax = item.calculate_tax(item.calculate_cost())
+            tax += item_tax/100
+        
+        return round(tax, 2)
+        
 
 
 def main():
@@ -31,5 +48,7 @@ def main():
 
     print(order.__str__())
     print(f'Total number of items in order: {order.total_items()}')
+    print(f'Your total is ${order.order_total()}.')
+    print(f'Your tax is ${order.order_tax()}.')
  
 main()
