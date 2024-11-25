@@ -1,4 +1,5 @@
 from dessert_shop import DessertItem, Candy, Cookie, IceCream, Sundae
+from receipt import *
 
 # class that makes order
 class Order:
@@ -52,3 +53,4 @@ def main():
     print(f'Your tax is ${order.order_tax()}.')
  
 main()
+

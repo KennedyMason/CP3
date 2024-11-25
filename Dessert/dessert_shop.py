@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from receipt import *
+
 
 # main dessert class
 class DessertItem(ABC):
@@ -66,4 +68,4 @@ class Sundae(IceCream):
     def calculate_cost(self):
         return (self.scoop_count * self.price_per_scoop) + self.topping_price
 
-
+make_receipt(DATA, "receipt.pdf")

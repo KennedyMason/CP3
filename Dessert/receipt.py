@@ -7,21 +7,15 @@ from reportlab.lib.styles import getSampleStyleSheet
 
 # data which we are going to display as tables 
 DATA = [ 
-	[ "Date" , "Name", "Subscription", "Price (Rs.)" ], 
-	[ 
-		"16/11/2020", 
-		"Full Stack Development with React & Node JS - Live", 
-		"Lifetime", 
-		"10,999.00/-", 
-	], 
-	[ "16/11/2020", "Geeks Classes: Live Session", "6 months", "9,999.00/-"], 
-	[ "Sub Total", "", "", "20,9998.00/-"], 
-	[ "Discount", "", "", "-3,000.00/-"], 
-	[ "Total", "", "", "17,998.00/-"], 
+	[ "Name" , "Item Cost", "Tax", "" ], 
+	[ "Candy Corn", "$0.38", "$0.38", ""], 
+	[ "Gummy Bears", "$0.09	", "$0.01", ""], 
+	[ "Chocolate Chip", "$2.00", "$0.14"], 
+	[ "Pistachio", "$1.58", "$0.11"], 
 ] 
 
 
-def make_receipt(data: list[list[str,int,float]], out_file_name: str)
+def make_receipt(data: list[list[str,int,float]], out_file_name: str):
 
     # creating a Base Document Template of page size A4 
     pdf = SimpleDocTemplate( "receipt.pdf" , pagesize = A4 ) 
@@ -60,3 +54,8 @@ def make_receipt(data: list[list[str,int,float]], out_file_name: str)
     # final step which builds the 
     # actual pdf putting together all the elements 
     pdf.build([ title , table ]) 
+
+
+def main():
+    pass
+
