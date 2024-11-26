@@ -13,7 +13,8 @@ class DessertItem(ABC):
         return f"{self.name}"
     
     def calculate_tax(self, cost):
-        return cost * self.tax_percent
+        tax = cost * self.tax_percent
+        return round(tax, 2)
     
     @abstractmethod
 
@@ -30,8 +31,8 @@ class Candy(DessertItem):
         self.price_per_pound = price_per_pound
 
     def calculate_cost(self):
-        return self.candy_weight * self.price_per_pound
-
+        cost =self.candy_weight * self.price_per_pound
+        return round(cost, 2)
 
 # cookie class
 class Cookie(DessertItem):
@@ -42,8 +43,8 @@ class Cookie(DessertItem):
         self.price_per_dozen = price_per_dozen
 
     def calculate_cost(self):
-        return self.cookie_quantity * self.price_per_dozen
-
+        cost = self.cookie_quantity * self.price_per_dozen
+        return round(cost, 2)
 
 # ice cream class
 class IceCream(DessertItem):
@@ -54,8 +55,8 @@ class IceCream(DessertItem):
         self.price_per_scoop = price_per_scoop
 
     def calculate_cost(self):
-        return self.scoop_count * self.price_per_scoop
-
+        cost = self.scoop_count * self.price_per_scoop
+        return round(cost, 2)
 
 # sundae class (ice cream subclass)
 class Sundae(IceCream):
@@ -66,6 +67,6 @@ class Sundae(IceCream):
         self.topping_price = topping_price
 
     def calculate_cost(self):
-        return (self.scoop_count * self.price_per_scoop) + self.topping_price
-
-make_receipt(DATA, "receipt.pdf")
+        cost = (self.scoop_count * self.price_per_scoop) + self.topping_price
+        return round(cost, 2)
+    

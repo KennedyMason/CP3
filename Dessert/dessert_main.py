@@ -39,7 +39,7 @@ class Order:
 def main():
 
     order = Order([])
-    
+
     order.add(Candy("Candy Corn", 1.5, .25))
     order.add(Candy("Gummy Bears", .25, .35))
     order.add(Cookie("Chocolate Chip", 6, 3.99))
@@ -47,10 +47,16 @@ def main():
     order.add(Sundae("Vanilla", 3, .69, "Hot Fudge", 1.29))
     order.add(Cookie("Oatmeal Raisin", 2, 3.45))
 
+    for item in order.order:
+        item_list = [item.name, f"${item.calculate_cost()}", f"${item.calculate_tax(item.calculate_cost())}"]
+        data.append(item_list)
+    
+    make_receipt(data, "receipt.pdf")
     print(order.__str__())
     print(f'Total number of items in order: {order.total_items()}')
     print(f'Your total is ${order.order_total()}.')
     print(f'Your tax is ${order.order_tax()}.')
+    print(data)
  
-main()
 
+main()

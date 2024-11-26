@@ -1,19 +1,14 @@
 
+
 # imports module 
 from reportlab.platypus import SimpleDocTemplate, Table, Paragraph, TableStyle 
 from reportlab.lib import colors 
 from reportlab.lib.pagesizes import A4 
 from reportlab.lib.styles import getSampleStyleSheet 
 
-# data which we are going to display as tables 
-DATA = [ 
-	[ "Name" , "Item Cost", "Tax", "" ], 
-	[ "Candy Corn", "$0.38", "$0.38", ""], 
-	[ "Gummy Bears", "$0.09	", "$0.01", ""], 
-	[ "Chocolate Chip", "$2.00", "$0.14"], 
-	[ "Pistachio", "$1.58", "$0.11"], 
-] 
-
+data = [
+    ["Name", "Item Cost", "Tax"]
+]
 
 def make_receipt(data: list[list[str,int,float]], out_file_name: str):
 
@@ -31,7 +26,7 @@ def make_receipt(data: list[list[str,int,float]], out_file_name: str):
 
     # creating the paragraph with 
     # the heading text and passing the styles of it 
-    title = Paragraph( "GeeksforGeeks" , title_style ) 
+    title = Paragraph( "Receipt" , title_style ) 
 
     # creates a Table Style object and in it, 
     # defines the styles row wise 
@@ -40,7 +35,7 @@ def make_receipt(data: list[list[str,int,float]], out_file_name: str):
     style = TableStyle( 
         [ 
             ( "BOX" , ( 0, 0 ), ( -1, -1 ), 1 , colors.black ), 
-            ( "GRID" , ( 0, 0 ), ( 4 , 4 ), 1 , colors.black ), 
+            ( "GRID" , ( 0, 0 ), ( 3 , len(data) + 1 ), 1 , colors.black ), 
             ( "BACKGROUND" , ( 0, 0 ), ( 3, 0 ), colors.gray ), 
             ( "TEXTCOLOR" , ( 0, 0 ), ( -1, 0 ), colors.whitesmoke ), 
             ( "ALIGN" , ( 0, 0 ), ( -1, -1 ), "CENTER" ), 
@@ -49,13 +44,12 @@ def make_receipt(data: list[list[str,int,float]], out_file_name: str):
     ) 
 
     # creates a table object and passes the style to it 
-    table = Table( DATA , style = style ) 
+    table = Table( data , style = style ) 
 
     # final step which builds the 
     # actual pdf putting together all the elements 
     pdf.build([ title , table ]) 
 
 
-def main():
-    pass
+
 
