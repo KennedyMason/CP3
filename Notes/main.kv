@@ -1,0 +1,49 @@
+BoxLayout:
+    orientation: 'vertical'
+
+    Label: 
+        text: 'Enter your name:'
+
+    TextInput:
+        id: user_input
+        hint_text: 'Tell me your name:'
+        multiline: False
+
+    Button:
+        text: 'Greet'
+        on_press: output_label.text = 'Hello, ' + user_input.text
+
+
+    Label:
+        id: output_label
+        text: 'Welcome'
+
+    CheckBox:
+        id: check_box
+        active: True
+
+    Label:
+        text: "Check me"
+
+    Slider:
+        id: slider
+        min: 0
+        max: 100
+        value: 50
+        
+    Switch:
+        id: Switch
+
+    Label:
+        text: 'Toggle me'
+
+    ProgressBar:
+        max: 100
+        value: slider.value
+
+    Image:
+        source: 'https://m.media-amazon.com/images/M/MV5BNTMyMzY5MzU2NF5BMl5BanBnXkFtZTcwNzU4OTUzNw@@._V1_.jpg'
+        allow_stretch: True
+        keep_ratio: True
+        width: slider.value
+    

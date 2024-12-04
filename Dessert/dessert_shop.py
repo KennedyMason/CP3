@@ -13,7 +13,7 @@ class DessertItem(ABC):
         return f"{self.name}"
     
     def calculate_tax(self, cost):
-        tax = cost * self.tax_percent
+        tax = cost * (self.tax_percent/100)
         return round(tax, 2)
     
     @abstractmethod

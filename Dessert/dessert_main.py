@@ -33,6 +33,7 @@ class Order:
             tax += item_tax/100
         
         return round(tax, 2)
+    
         
 
 
@@ -48,7 +49,7 @@ def main():
     order.add(Cookie("Oatmeal Raisin", 2, 3.45))
 
     for item in order.order:
-        item_list = [item.name, f"${item.calculate_cost()}", f"${item.calculate_tax(item.calculate_cost())}"]
+        item_list = [item.name, f"${round(item.calculate_cost(),2)}", f"${round(item.calculate_tax(item.calculate_cost()),2)}"]
         data.append(item_list)
     
     make_receipt(data, "receipt.pdf")
