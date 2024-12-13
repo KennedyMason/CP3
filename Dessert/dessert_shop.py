@@ -1,3 +1,4 @@
+
 import dessert
 import receipt
 
@@ -117,7 +118,7 @@ def main():
                 print('Invalid response: Please enter a choice from the menu (1-4) or Enter')
         print()
     for item in order.order:
-        print(item.name)
+        print(item)
     #data: list[list[str,int,float]]
     data = []
     data.append(["Item", "Cost", "Tax"])
@@ -127,8 +128,9 @@ def main():
     data.append(["Order Total", round((order.order_cost() + order.order_tax())*100)/100, ""])
     data.append(["Total Items in Order","", len(order)])
 
-    print("Total number of items in order:", len(order))
-
+    print("Total items in order:", len(order))
+    print("Order Subtotal", round(order.order_cost()*100)/100, round(order.order_tax()*100)/100)
+    print("Order Total", round((order.order_cost() + order.order_tax())*100)/100,)
     receipt.make_receipt(
        data , "receipt.pdf" )    
 
