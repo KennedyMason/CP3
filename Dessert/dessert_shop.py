@@ -1,127 +1,135 @@
-from abc import ABC, abstractmethod
+import dessert
+import receipt
 
-class DessertItem(ABC):
-    def __init__(self,name):
-        self.name = name
-        self.tax_percent = .0725
-
-    @abstractmethod
-
-    def calculate_cost(self):
+class DessertShop():
+    def __init__(self):
         pass
-    
-    def calculate_tax(self):
-        tax = self.calculate_cost() * (self.tax_percent)
-        return tax
 
-class Candy(DessertItem):
-    def __init__(self,name,candy_weight,price_per_pound):
-        super().__init__(name)
-        self.candy_weight = candy_weight
-        self.price_per_pound = price_per_pound
+    def user_prompt_candy(self):
+        cn = input("What kind of candy do you want? ")
+        while True:
+            cw = input("How many pounds do you want? ")
+            if cw.isdigit():
+                cw = int(cw)
+                break
+        while True:
+            cppp = input("How much does it cost per pound? ")
+            c2=cppp.split(".")
+            if c2[0].isdigit() and (c2[1].isdigit() if len(c2)==2 else True):
+                cppp = float(cppp)
+                break
+        return dessert.Candy(cn,cw,cppp)
 
-    def calculate_cost(self):
-        cost = self.candy_weight * self.price_per_pound
-        return cost
+    def user_prompt_cookie(self):
+        con = input("What kind of cookie do you want? ")
+        while True:
+            ca = input("How many dozens do you want? ")
+            if ca.isdigit():
+                ca = int(ca)
+                break
+        while True:
+            cppd = input("How much does it cost per dozen? ")
+            c2=cppd.split(".")
+            if c2[0].isdigit() and (c2[1].isdigit() if len(c2)==2 else True):
+                cppd = float(cppd)
+                break
+        return dessert.Cookie(con,ca,cppd)
 
-class Cookie(DessertItem):
-    def __init__(self,name,cookie_quantity,price_per_dozen):
-        super().__init__(name)
-        self.cookie_quantity = cookie_quantity
-        self.price_per_dozen = price_per_dozen
+    def user_prompt_icecream(self):
+        icf = input("What kind of icecream do you want? ")
+        while True:
+            icsc = input("How many scoops do you want? ")
+            if icsc.isdigit():
+                icsc = int(icsc)
+                break
+        while True:
+            icpps = "0"+input("How much does it cost per scoop? ")
+            ic2=icpps.split(".")
+            if ic2[0].isdigit() and (ic2[1].isdigit() if len(ic2)==2 else True):
+                icpps = float(icpps)
+                break
+        return dessert.IceCream(icf,icsc,icpps)
 
-    def calculate_cost(self):
-        cost = self.cookie_quantity * self.price_per_dozen
-        return cost
-
-class IceCream(DessertItem):
-    def __init__(self,name,scoop_count,price_per_scoop):
-        super().__init__(name)
-        self.scoop_count = scoop_count
-        self.price_per_scoop = price_per_scoop
-   
-    def calculate_cost(self):
-        cost = self.scoop_count * self.price_per_scoop
-        return cost
-
-class Sundae(IceCream):
-    def __init__(self,name,scoop_count,price_per_scoop,topping_name,topping_price):
-        super().__init__(name,scoop_count,price_per_scoop)
-        self.topping_name = topping_name
-        self.topping_price = topping_price
-    
-    def calculate_cost(self):
-        cost = (self.scoop_count * self.price_per_scoop)+(self.topping_price)
-        return cost
-
-class Order():
-    def __init__(self):
-        self.order = []
-
-    def __len__(self):
-        return len(self.order)
-
-    def add(self,added_item):
-        self.order.append(added_item)    
-
-    def order_cost(self):
-        total_cost = 0.00
-        for i in self.order:
-            total_cost += i.calculate_cost()
-        return total_cost
-    
-    def order_tax(self):
-        total_tax = 0.00
-        for i in self.order:
-            total_tax += i.calculate_tax()
-        return round(total_tax)
-
-class Order():
-    def __init__(self):
-        self.order = []
-
-    def __len__(self):
-        return len(self.order)
-
-    def add(self,added_item):
-        self.order.append(added_item)    
-
-    def order_cost(self):
-        total_cost = 0.00
-        for i in self.order:
-            total_cost += i.calculate_cost()
-        return total_cost
-    
-    def order_tax(self):
-        total_tax = 0.00
-        for i in self.order:
-            total_tax += i.calculate_tax()
-        return round(total_tax)
+    def user_prompt_sundae(self):
+        sn = input("What kind of icecream do you want? ")
+        while True:
+            ssc = input("How many scoops do you want? ")
+            if ssc.isdigit():
+                ssc = int(ssc)
+                break
+        while True:
+            spps = "0"+input("How much does it cost per scoop? ") 
+            sp2=spps.split(".")
+            if sp2[0].isdigit() and (sp2[1].isdigit() if len(sp2)==2 else True):
+                spps = float(spps)
+                break
+        stn = input("What topping would you like? ")
+        while True:
+            stp = "0"+input("How much does it cost for the topping? ")       
+            st2=stp.split(".")
+            if st2[0].isdigit() and (st2[1].isdigit() if len(st2)==2 else True):
+                stp = float(stp)
+                break
+        return dessert.Sundae(sn,ssc,spps,stn,stp)
 
 def main():
-    order1 = Order()
-    order1.add(Candy("Candy Corn", 1.5, .25))
-    order1.add(Candy("Gummy Bears", .25, .35))
-    order1.add(Cookie("Chocolate Chip", 6, 3.99))    
-    order1.add(IceCream("Pistachio", 2, .79))    
-    order1.add(Sundae("Vanilla", 3, .69, "Hot Fudge", 1.29))    
-    order1.add(Cookie("Oatmeal Raisin", 2, 3.45))    
-        
-    for item in order1.order:
+    shop = DessertShop()
+    order = dessert.Order()
+    '''
+    order.add(Candy('Candy Corn', 1.5, 0.25))
+    order.add(Candy('Gummy Bears', 0.25, 0.35))
+    order.add(Cookie('Chocolate Chip', 6, 3.99))
+    order.add(IceCream('Pistachio', 2, 0.79))
+    order.add(Sundae('Vanilla', 3, 0.69, 'Hot Fudge', 1.29))
+    order.add(Cookie('Oatmeal Raisin', 2, 3.45))
+    '''
+    done: bool = False
+
+    prompt = '\n'.join([ '\n',
+            '1: Candy',
+            '2: Cookie',
+            '3: Ice Cream',
+            '4: Sunday',
+            '\nWhat would you like to add to the order? (1-4, Enter for done): '
+        ])
+    while not done:
+        choice = input(prompt)
+        match choice:
+            case '':
+                done = True
+            case '1':
+                item = shop.user_prompt_candy()
+                order.add(item)
+                print(f'{item.name} has been added to your order.')
+            case '2':
+                item = shop.user_prompt_cookie()
+                order.add(item)
+                print(f'{item.name} has been added to your order.')
+            case '3':
+                item = shop.user_prompt_icecream()
+                order.add(item)
+                print(f'{item.name} has been added to your order.')
+            case '4':
+                item = shop.user_prompt_sundae()
+                order.add(item)
+                print(f'{item.name} has been added to your order.')
+            case _:
+                print('Invalid response: Please enter a choice from the menu (1-4) or Enter')
+        print()
+    for item in order.order:
         print(item.name)
     #data: list[list[str,int,float]]
     data = []
     data.append(["Item", "Cost", "Tax"])
-    for i in order1.order:
-        data.append([i.name,i.calculate_cost(),round(i.calculate_tax()*100)])
-    data.append(["Order Subtotals",order1.order_cost(),round(order1.order_tax())])
-    data.append(["Order Total", round(order1.order_cost() + order1.order_tax()*100), ""])
-    data.append(["Total Items in Order","", len(order1)])
+    for i in order.order:
+        data.append([i.name,round(i.calculate_cost()*100)/100,round(i.calculate_tax()*100)/100])
+    data.append(["Order Subtotals",round(order.order_cost()*100)/100,round(order.order_tax()*100)/100])
+    data.append(["Order Total", round((order.order_cost() + order.order_tax())*100)/100, ""])
+    data.append(["Total Items in Order","", len(order)])
 
-    print("Total number of items in order:", len(order1))
+    print("Total number of items in order:", len(order))
 
-    
     receipt.make_receipt(
-       data , "receipt.pdf" )
+       data , "receipt.pdf" )    
 
 main()
